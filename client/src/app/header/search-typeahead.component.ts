@@ -7,11 +7,15 @@ import { AuthService, ServerService } from '@app/core'
 import { logger } from '@root-helpers/logger'
 import { HTMLServerConfig, SearchTargetType } from '@peertube/peertube-models'
 import { SuggestionComponent, SuggestionPayload, SuggestionPayloadType } from './suggestion.component'
+import { NgFor, NgIf, NgClass } from '@angular/common'
+import { GlobalIconComponent } from '../shared/shared-icons/global-icon.component'
+import { FormsModule } from '@angular/forms'
 
 @Component({
   selector: 'my-search-typeahead',
   templateUrl: './search-typeahead.component.html',
-  styleUrls: [ './search-typeahead.component.scss' ]
+  styleUrls: [ './search-typeahead.component.scss' ],
+  imports: [ FormsModule, GlobalIconComponent, NgFor, SuggestionComponent, NgIf, NgClass ]
 })
 export class SearchTypeaheadComponent implements OnInit, AfterViewChecked, OnDestroy {
   @ViewChildren(SuggestionComponent) suggestionItems: QueryList<SuggestionComponent>
@@ -63,10 +67,6 @@ export class SearchTypeaheadComponent implements OnInit, AfterViewChecked, OnDes
 
   ngOnDestroy () {
     if (this.keyboardEventsManager) this.keyboardEventsManager.change.unsubscribe()
-  }
-
-  areInstructionsDisplayed () {
-    return !this.search
   }
 
   showSearchGlobalHelp () {

@@ -1,11 +1,15 @@
+import { NgIf } from '@angular/common'
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, RouterLink } from '@angular/router'
 import { SignupService } from '@app/+signup/shared/signup.service'
 import { AuthService, Notifier, ServerService } from '@app/core'
+import { AlertComponent } from '@app/shared/shared-main/common/alert.component'
+import { SignupSuccessAfterEmailComponent } from '../../shared/signup-success-after-email.component'
 
 @Component({
   selector: 'my-verify-account-email',
-  templateUrl: './verify-account-email.component.html'
+  templateUrl: './verify-account-email.component.html',
+  imports: [ NgIf, SignupSuccessAfterEmailComponent, RouterLink, AlertComponent ]
 })
 
 export class VerifyAccountEmailComponent implements OnInit {
